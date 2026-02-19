@@ -10,21 +10,17 @@ config_version=5
 
 [application]
 
-config/name="WaterWay_1.0"
-run/main_scene="uid://ckckltdu3x2tn"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/name="ru.godot.waterway"
+run/main_scene="uid://dmbmrs17y1c6d"
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=854
-
-[physics]
-
-3d/physics_engine="Jolt Physics"
+window/size/viewport_width=360
+window/size/viewport_height=800
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
-rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
