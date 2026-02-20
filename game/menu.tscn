@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://du67l6x8kxxo" path="res://assets/background-black.png" id="2_1g5p4"]
 [ext_resource type="Texture2D" uid="uid://1rlhggxop3hc" path="res://assets/photo_2026-02-17_15-03-50.jpg" id="3_wslbq"]
 
-[node name="Node2D" type="Node2D" unique_id=1804430211]
+[node name="menu" type="Node2D" unique_id=1804430211]
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=753779237]
 position = Vector2(246, 403)
@@ -13,14 +13,14 @@ texture = ExtResource("1_abghd")
 [node name="Background" type="Sprite2D" parent="." unique_id=52758457]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(243, 409)
+position = Vector2(238, 428)
 texture = ExtResource("2_1g5p4")
 region_enabled = true
 region_rect = Rect2(-21, 0, 480, 854)
 
 [node name="Button" type="Button" parent="Background" unique_id=2014693340]
-offset_left = -81.0
-offset_top = -34.0
-offset_right = 77.0
-offset_bottom = 64.0
+offset_left = -85.0
+offset_top = -109.0
+offset_right = 73.0
+offset_bottom = -11.0
 icon = ExtResource("3_wslbq")
