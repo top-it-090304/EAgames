@@ -7,6 +7,7 @@ var ducks_collected = 0
 
 @onready var ray = $RayCast2D
 @onready var visual = $ColorRect
+@onready var ground = get_node("../Ground")  # Добавляем ссылку на землю
 
 func _ready():
 	# Настраиваем внешний вид
@@ -23,17 +24,28 @@ func _physics_process(delta):
 	if not can_move:
 		return
 	
-	# Проверяем, есть ли земля под водой
+	# Проверяем, есть ли земля ПРЯМО ПОД водой (для остановки)
 	if ray.is_colliding():
 		var collider = ray.get_collider()
 		if collider.name == "Ground":
 			velocity.y = 0
 			can_move = false
-			print("Вода остановилась")
+			print("Вода остановилась - земля под водой")
 			return
 	
+	# НОВАЯ ПРОВЕРКА: проверяем, есть ли земля ВПЕРЕДИ по пути движения
+	var next_position = position + Vector2(0, velocity.y * delta * 2)  # позиция в следующем кадре
+	var next_cell = ground.local_to_map(ground.to_local(next_position))
+	
+	# Если в следующей клетке есть земля - останавливаемся
+	if ground.get_cell_source_id(next_cell) != -1:
+		velocity.y = 0
+		can_move = false
+		print("Вода остановилась - земля впереди в клетке ", next_cell)
+		return
+	
 	# Падаем вниз
-	velocity.y += gravity * delta
+	velocity.y += water_gravity * delta  # ИСПРАВЛЕНО: water_gravity вместо gravity
 	position += velocity * delta
 
 func _blink():
