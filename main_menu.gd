@@ -23,10 +23,19 @@ func _process(delta):
 		
 
 func _on_start_button_pressed() -> void:
-	#get_three().change_scene_to_file("res://levels/chapter1/level_1_1.tscn")
+	# Проверяем, что дерево существует
+	if not get_tree():
+		print("Ошибка: дерево сцены не доступно")
+		return
+	
+	# Вызываем анимацию
 	animate_button_press(start_button)
+	
+	# Ждём
 	await get_tree().create_timer(0.1).timeout
-	pass # Replace with function body.
+	
+	# Переходим
+	get_tree().change_scene_to_file("res://lvl_1.tscn")
 
 
 func _on_options_button_pressed() -> void:
