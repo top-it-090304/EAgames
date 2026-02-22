@@ -2,7 +2,6 @@ extends Node2D
 
 # Переменные для анимации фона
 @onready var background = $Background
-@onready var title_label = $MenuContainer/TitleLabel
 @onready var start_button = $MenuContainer/StartButton
 @onready var options_button = $MenuContainer/OptionsButton
 @onready var quit_button = $MenuContainer/QuitButton
@@ -29,7 +28,6 @@ func _on_start_button_pressed() -> void:
 	await animate_button_press(start_button)
 	
 	# Переходим
-	get_tree().change_scene_to_file("res://lvl_1.tscn")
 
 func _on_options_button_pressed() -> void:
 	# ИСПРАВЛЕНО: добавляем await
