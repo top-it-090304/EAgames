@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://kj064uptipxg"]
+
+[ext_resource type="Texture2D" uid="uid://brqtddvdy317t" path="res://images/stone.png" id="1_3dotb"]
+[ext_resource type="Script" uid="uid://bja7jjs1kv1km" path="res://cleaner.gd" id="1_mej4c"]
+[ext_resource type="Script" uid="uid://pfy3fynpr4w6" path="res://canvas.gd" id="2_0f1vc"]
+[ext_resource type="Texture2D" uid="uid://bkn0kxge6l3yh" path="res://images/ground.png" id="2_3dotb"]
+[ext_resource type="Texture2D" uid="uid://d2jf7py7yqkic" path="res://images/brush.png" id="3_3dotb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3dotb"]
+blend_mode = 2
+
+[node name="cleaner" type="Node2D"]
+script = ExtResource("1_mej4c")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(180, 400)
+texture = ExtResource("1_3dotb")
+
+[node name="top_layer" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(180, 400)
+texture = ExtResource("2_3dotb")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="top_layer"]
+self_modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_3dotb")
+offset_left = -180.0
+offset_top = -400.0
+offset_right = 181.0
+offset_bottom = 402.0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="top_layer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(361, 802)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="canvas" type="Node2D" parent="top_layer/SubViewportContainer"]
+script = ExtResource("2_0f1vc")
+brush_texture = ExtResource("3_3dotb")
