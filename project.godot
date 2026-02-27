@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="ru.godot.waterway"
-run/main_scene="uid://pi1q3c3rvg66"
+run/main_scene="uid://dmbmrs17y1c6d"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
