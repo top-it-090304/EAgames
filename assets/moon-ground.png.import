@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3icee1xjqlp3"
-path="res://.godot/imported/mars_ground.png-547ebc6c7a6c041bc75810c699d510cb.ctex"
+uid="uid://cxtpjdwavllut"
+path="res://.godot/imported/moon-ground.png-64a4d67348cc57eafbd3e3baf4ee839c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/mars_ground.png"
-dest_files=["res://.godot/imported/mars_ground.png-547ebc6c7a6c041bc75810c699d510cb.ctex"]
+source_file="res://assets/moon-ground.png"
+dest_files=["res://.godot/imported/moon-ground.png-64a4d67348cc57eafbd3e3baf4ee839c.ctex"]
 
 [params]
 
