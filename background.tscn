@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://qj23pqgmroyh"]
+
+[ext_resource type="Script" uid="uid://bvofxgv3hej75" path="res://background.gd" id="1_i7s6n"]
+[ext_resource type="Texture2D" uid="uid://qh838764qpkv" path="res://assets/background-black.png" id="1_oabld"]
+
+[node name="Background" type="ParallaxBackground" unique_id=972851753]
+script = ExtResource("1_i7s6n")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="." unique_id=861343804]
+position = Vector2(0, 2)
+motion_mirroring = Vector2(0, 800)
+
+[node name="BackgroundBlack" type="Sprite2D" parent="ParallaxLayer" unique_id=1672171501]
+position = Vector2(180, 400)
+scale = Vector2(1, 2)
+texture = ExtResource("1_oabld")

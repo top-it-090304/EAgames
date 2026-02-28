@@ -8,13 +8,8 @@ extends Node2D
 
 var time_passed = 0.0
 
-func _process(delta):
-	time_passed += delta
-	
-	if background and background.material:
-		var intensity = 0.8 + 0.2 * sin(time_passed * 2.0)
-		background.material.set_shader_parameter("intensity", intensity)
-		print("Интенсивность: ", intensity)
+#func _process(delta):
+
 
 func _on_start_button_pressed() -> void:
 	if not get_tree():
