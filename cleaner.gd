@@ -1,15 +1,24 @@
 extends Node2D
 
-@onready var top_layer = $top_layer # Слой, который мы стираем
-@onready var viewport = $SubViewportContainer/SubViewport
+@onready var top_layer = $top_layer
+@onready var background = $background
 
 func _ready():
-	# Ждем один кадр, чтобы Viewport успел создаться
-	await get_tree().process_frame 
+	print("Игра инициализирована")
 	
-	if top_layer.material:
-		var tex = viewport.get_texture()
-		# Передаем текстуру маски в шейдер
-		top_layer.material.set_shader_parameter("mask_texture", tex)
-	else:
-		print("ОШИБКА: Забудь накинуть ShaderMaterial на спрайт top_layer!")
+	# Отключаем старый canvas если есть
+	if has_node("SubViewportContainer/SubViewport/canvas"):
+		$SubViewportContainer/SubViewport/canvas.visible = false
+	
+	# Создаем eraser
+	if not has_node("eraser"):
+		var eraser = preload("res://eraser.gd").new()
+		eraser.brush_size = 15
+		add_child(eraser)
+		eraser.name = "eraser"
+	
+	# Создаем water_manager
+	if not has_node("water_manager"):
+		var water_manager = preload("res://water_manager.gd").new()
+		add_child(water_manager)
+		water_manager.name = "water_manager"

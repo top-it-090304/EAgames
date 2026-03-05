@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2sgbdys2jplu"]
+[gd_scene load_steps=9 format=3 uid="uid://d2sgbdys2jplu"]
 
 [ext_resource type="Script" uid="uid://dxaktev4cjifo" path="res://cleaner.gd" id="1_mej4c"]
 [ext_resource type="Texture2D" uid="uid://voo0h5ary58d" path="res://images/mars-stone.png" id="2_3dotb"]
 [ext_resource type="Texture2D" uid="uid://oie72lue6wtg" path="res://images/mars-ground.png" id="3_mej4c"]
 [ext_resource type="Script" uid="uid://difcihklirkoq" path="res://water_manager.gd" id="5_3dotb"]
 [ext_resource type="Script" uid="uid://cuacfigkpuygy" path="res://water_pool.gd" id="5_mej4c"]
-[ext_resource type="Script" uid="uid://1m5fotqqydnj" path="res://eraser.gd" id="6_mej4c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0f1vc"]
 radius = 70.0
@@ -32,12 +31,9 @@ texture = ExtResource("3_mej4c")
 script = ExtResource("5_3dotb")
 
 [node name="water_pool" type="Area2D" parent="water_container"]
-visible = false
 script = ExtResource("5_mej4c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="water_container/water_pool"]
-visible = false
-position = Vector2(-2, -2)
 shape = SubResource("CircleShape2D_0f1vc")
 
 [node name="water_drops" type="Node2D" parent="water_container"]
@@ -51,7 +47,3 @@ shape = SubResource("RectangleShape2D_3dotb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="water_exit"]
 shape = SubResource("RectangleShape2D_mej4c")
-
-[node name="eraser" type="Node2D" parent="."]
-position = Vector2(180, 400)
-script = ExtResource("6_mej4c")

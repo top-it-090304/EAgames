@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2sgbdys2jplu"]
+
+[ext_resource type="Script" uid="uid://dxaktev4cjifo" path="res://cleaner.gd" id="1_mej4c"]
+[ext_resource type="Script" uid="uid://bnsgj586836c3" path="res://canvas.gd" id="2_0f1vc"]
+[ext_resource type="Texture2D" uid="uid://b3ofpl4bn505g" path="res://images/mars-stone.png" id="2_3dotb"]
+[ext_resource type="Texture2D" uid="uid://ddyean63tbv55" path="res://images/mars-ground.png" id="3_mej4c"]
+[ext_resource type="Script" uid="uid://difcihklirkoq" path="res://water_manager.gd" id="5_3dotb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3dotb"]
+blend_mode = 2
+
+[sub_resource type="Resource" id="Resource_yj1nd"]
+metadata/__load_path__ = "res://images/brush.png"
+
+[node name="cleaner" type="Node2D"]
+script = ExtResource("1_mej4c")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(180, 400)
+texture = ExtResource("2_3dotb")
+
+[node name="top_layer" type="Sprite2D" parent="."]
+clip_children = 2
+position = Vector2(180, 400)
+texture = ExtResource("3_mej4c")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_3dotb")
+offset_right = 361.0
+offset_bottom = 802.0
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(361, 802)
+render_target_clear_mode = 1
+render_target_update_mode = 0
+
+[node name="canvas" type="Node2D" parent="SubViewportContainer"]
+script = ExtResource("2_0f1vc")
+brush_texture = SubResource("Resource_yj1nd")
+
+[node name="water_manager" type="Node2D" parent="."]
+script = ExtResource("5_3dotb")
+
+[node name="water_particles" type="GPUParticles2D" parent="water_manager"]
+
+[node name="water_areas" type="Node2D" parent="water_manager"]
+
+[node name="water_source" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water_source"]
+
+[node name="Sprite2D" type="Sprite2D" parent="water_source"]
+
+[node name="water_exit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water_exit"]
+
+[node name="Sprite2D" type="Sprite2D" parent="water_exit"]

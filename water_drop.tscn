@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdku5cvur2n6r"]
+
+[ext_resource type="Script" uid="uid://u72d7l8b0xl0" path="res://water_drop.gd" id="1_vt7kr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h266y"]
+radius = 2.0
+
+[node name="WaterDrop" type="RigidBody2D"]
+gravity_scale = 0.8
+freeze = true
+linear_damp = 0.8
+angular_damp = 0.8
+script = ExtResource("1_vt7kr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h266y")
