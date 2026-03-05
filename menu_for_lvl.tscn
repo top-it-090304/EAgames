@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://0x6bm2wi7ulm"]
+
+[ext_resource type="PackedScene" uid="uid://qj23pqgmroyh" path="res://background.tscn" id="1_1qaqq"]
+[ext_resource type="Script" uid="uid://dtuscvssqhes2" path="res://menu_for_lvl.gd" id="1_85sk8"]
+[ext_resource type="Texture2D" uid="uid://b3icee1xjqlp3" path="res://assets/mars_ground.png" id="2_85sk8"]
+
+[node name="menu_for_lvl" type="Node2D" unique_id=2060699838]
+script = ExtResource("1_85sk8")
+
+[node name="Background" parent="." unique_id=972851753 instance=ExtResource("1_1qaqq")]
+
+[node name="lvl1" type="Button" parent="." unique_id=40002315]
+offset_left = 58.0
+offset_top = 617.0
+offset_right = 130.0
+offset_bottom = 689.0
+icon = ExtResource("2_85sk8")
+
+[connection signal="pressed" from="lvl1" to="." method="_on_lvl_1_pressed"]

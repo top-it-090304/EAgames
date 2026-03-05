@@ -10,6 +10,8 @@ var time_passed = 0.0
 
 #func _process(delta):
 
+func _ready() -> void:
+	pass
 
 func _on_start_button_pressed() -> void:
 	if not get_tree():
@@ -18,7 +20,8 @@ func _on_start_button_pressed() -> void:
 	
 	await animate_button_press(start_button)
 	
-	get_tree().change_scene_to_file("res://lvl_1.tscn")
+	get_tree().change_scene_to_file("res://menu_for_lvl.tscn")
+	print("error:")
 
 func _on_options_button_pressed() -> void:
 	# ИСПРАВЛЕНО: добавляем await

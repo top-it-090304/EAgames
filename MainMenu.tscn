@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dmbmrs17y1c6d"]
 
-[ext_resource type="Script" uid="uid://dn7hj8g8y51bc" path="res://main_menu.gd" id="1_i26rj"]
+[ext_resource type="Script" uid="uid://dn7hj8g8y51bc" path="res://main_menu.gd" id="1_cqjrg"]
 [ext_resource type="StyleBox" uid="uid://dsyw3dbwxcjyj" path="res://new_style_box_flat.tres" id="3_h7a2f"]
 [ext_resource type="StyleBox" uid="uid://xe1ave0qkec0" path="res://new_style_box_flat_focus.tres" id="3_qoqlk"]
 [ext_resource type="StyleBox" uid="uid://cr6spfsk0ak8j" path="res://new_style_box_flat_hover.tres" id="4_qoqlk"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://qj23pqgmroyh" path="res://background.tscn" id="7_e2xy7"]
 
 [node name="MainMenu" type="Node2D" unique_id=1607576325]
-script = ExtResource("1_i26rj")
+script = ExtResource("1_cqjrg")
 
 [node name="MenuContainer" type="VBoxContainer" parent="." unique_id=171901320]
 offset_left = 8.0
