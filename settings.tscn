@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dve6kuf57ne0v"]
+
+[ext_resource type="PackedScene" uid="uid://qj23pqgmroyh" path="res://background.tscn" id="1_x2hje"]
+
+[node name="settings" type="Node2D" unique_id=1154377627]
+
+[node name="Background" parent="." unique_id=972851753 instance=ExtResource("1_x2hje")]
