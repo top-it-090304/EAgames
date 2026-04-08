@@ -17,8 +17,8 @@ config/icon="res://Assets/icon.svg"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=860
+window/size/viewport_width=400
+window/size/viewport_height=800
 
 [physics]
 

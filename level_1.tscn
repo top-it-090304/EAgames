@@ -9,8 +9,14 @@
 [node name="Rightpipe" parent="." unique_id=726929064 instance=ExtResource("2_hn12h")]
 position = Vector2(31, 32)
 
+[node name="Rightpipe2" parent="." unique_id=774771049 instance=ExtResource("2_hn12h")]
+position = Vector2(31, 114)
+
 [node name="Vpipe" parent="." unique_id=1632010337 instance=ExtResource("2_ihfcg")]
 position = Vector2(118, 32)
 
+[node name="Vpipe2" parent="." unique_id=1995068449 instance=ExtResource("2_ihfcg")]
+position = Vector2(118, 114)
+
 [node name="tpipe" parent="." unique_id=223455403 instance=ExtResource("3_hn12h")]
-position = Vector2(205, 32)
+position = Vector2(205, 117)
