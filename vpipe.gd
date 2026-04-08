@@ -2,7 +2,7 @@ extends Area2D
 
 enum Direction { NORTH, SOUTH, WEST, EAST }
 
-var open_sides = [Direction.NORTH, Direction.SOUTH]
+var open_sides = [Direction.WEST, Direction.EAST]  # для прямой трубы
 var connected_pipes = []
 var has_water = false
 
@@ -11,11 +11,11 @@ var has_water = false
 
 func _ready():
 	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 	full_sprite.hide()
 	
-	## Даем воду через 1 секунду
-	#await get_tree().create_timer(1.0).timeout
-	#receive_water()
+	# НЕ ДАЕМ ВОДУ ПРИ СТАРТЕ!
+	# Вода появится ТОЛЬКО когда соединятся трубы
 
 func get_side_to(neighbor):
 	var diff = neighbor.global_position - global_position
@@ -42,20 +42,66 @@ func _on_area_entered(area):
 	
 	if can_connect(area) and area not in connected_pipes:
 		connected_pipes.append(area)
-		print("Соединение установлено!")
+		print("Соединение установлено! connected_pipes: ", connected_pipes.size())
 		
-		if has_water:
-			print("Передаю воду соседу")
+		# КЛЮЧЕВОЙ МОМЕНТ: даем воду ТОЛЬКО при соединении
+		if not has_water and not area.has_water:
+			# Если это первое соединение в системе - даем воду
+			print("Первое соединение! Даю воду себе")
+			receive_water()
+		elif has_water and not area.has_water:
+			print("У меня есть вода, передаю соседу")
 			area.receive_water()
+		elif area.has_water and not has_water:
+			print("У соседа есть вода, беру себе")
+			receive_water()
+
+func _on_area_exited(area):
+	if area in connected_pipes:
+		connected_pipes.erase(area)
+		print("Потерял соединение. connected_pipes: ", connected_pipes.size())
+		
+		# Если потеряли последнее соединение - убираем воду
+		if connected_pipes.size() == 0 and has_water:
+			print("Нет соединений, убираю воду")
+			has_water = false
+			full_sprite.hide()
+			empty_sprite.show()
 
 func receive_water():
 	if has_water:
 		return
-		
-	print("Получил воду!")
+	
 	has_water = true
 	full_sprite.show()
 	empty_sprite.hide()
+	print("💧 Вода появилась у ", name)
+	
+	for pipe in connected_pipes:
+		if pipe.has_method("receive_water") and not pipe.has_water:
+			print("  → Передаю воду ", pipe.name)
+			pipe.receive_water()
+
+func _recheck_connections():
+	var old_pipes = connected_pipes.duplicate()
+	connected_pipes.clear()
+	
+	for area in get_overlapping_areas():
+		if can_connect(area):
+			connected_pipes.append(area)
+	
+	print("Recheck: connected_pipes = ", connected_pipes.size())
+	
+	# Если были соединения, но теперь их нет - убираем воду
+	if has_water and connected_pipes.size() == 0:
+		print("Соединения разорваны, убираю воду")
+		has_water = false
+		full_sprite.hide()
+		empty_sprite.show()
+	elif has_water:
+		for pipe in connected_pipes:
+			if pipe.has_method("receive_water") and not pipe.has_water:
+				pipe.receive_water()
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -63,3 +109,4 @@ func _input(event):
 		var rect = Rect2(global_position - Vector2(40, 40), Vector2(80, 80))
 		if rect.has_point(mouse_pos):
 			rotation_degrees += 90
+			_recheck_connections()
