@@ -7,11 +7,11 @@ var connected_pipes = []
 var has_water = false
 
 @onready var empty_sprite = $Emptypipe
-@onready var full_sprite = $Fillpipe
+#@onready var full_sprite = $Fillpipe
 
 func _ready():
 	area_entered.connect(_on_area_entered)
-	full_sprite.hide()
+	#full_sprite.hide()
 	
 	# Даем воду через 1 секунду, НО только если есть соединения
 	#await get_tree().create_timer(1.0).timeout
@@ -90,7 +90,7 @@ func receive_water():
 		return
 	
 	has_water = true
-	full_sprite.show()
+	#full_sprite.show()
 	empty_sprite.hide()
 	print("💧 Вода появилась у ", name)
 	

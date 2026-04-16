@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bkqf2ddf5infy"]
 
 [ext_resource type="Script" uid="uid://c7h5mq6la63vr" path="res://tpipe.gd" id="1_87eb0"]
-[ext_resource type="Texture2D" uid="uid://ry0ff6jux02j" path="res://Assets/pipe_cross.png" id="2_gkwv8"]
-[ext_resource type="Texture2D" uid="uid://qxj4dvxer4lj" path="res://Assets/pipe_cross_active.png" id="3_5exbt"]
+[ext_resource type="Texture2D" uid="uid://cokjobvq4xc14" path="res://Assets/Empty_c.jpg" id="2_gkwv8"]
+[ext_resource type="Texture2D" uid="uid://cavwb0688svag" path="res://Assets/Full_c.jpg" id="3_5exbt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5exbt"]
-size = Vector2(101, 101)
+size = Vector2(64, 64)
 
 [node name="tpipe" type="Area2D" unique_id=223455403]
 script = ExtResource("1_87eb0")
@@ -18,5 +18,4 @@ visible = false
 texture = ExtResource("3_5exbt")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=360104074]
-position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_5exbt")

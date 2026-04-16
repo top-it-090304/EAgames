@@ -1,21 +1,22 @@
 [gd_scene format=3 uid="uid://dewgdf22uoqu7"]
 
 [ext_resource type="Script" uid="uid://bntxe54cnr7ft" path="res://hpipe.gd" id="1_mxek5"]
-[ext_resource type="Texture2D" uid="uid://l15n60gfdapc" path="res://Assets/pipe_t.png" id="2_mxek5"]
-[ext_resource type="Texture2D" uid="uid://0ffp3at8a7bs" path="res://Assets/pipe_t_active.png" id="3_06qx6"]
+[ext_resource type="Texture2D" uid="uid://4vwyd6hm2q4b" path="res://Assets/Empty_tpipe.jpg" id="2_mxek5"]
+[ext_resource type="Texture2D" uid="uid://bi6q5w7q25hbt" path="res://Assets/Full_tpipe.jpg" id="3_06qx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06qx6"]
-size = Vector2(100, 81)
+size = Vector2(64, 64)
 
 [node name="3pipe" type="Area2D" unique_id=1597919377]
 script = ExtResource("1_mxek5")
 
 [node name="Emptypipe" type="Sprite2D" parent="." unique_id=290032904]
+rotation = 1.5707964
 texture = ExtResource("2_mxek5")
 
 [node name="Fillpipe" type="Sprite2D" parent="." unique_id=379686257]
+visible = false
 texture = ExtResource("3_06qx6")
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=1189060456]
-position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_06qx6")
