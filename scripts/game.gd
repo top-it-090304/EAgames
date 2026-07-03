@@ -41,6 +41,10 @@ func _connect_safe(btn: Button, callback: Callable) -> void:
 		btn.pressed.connect(callback)
 
 func _load_level(level_num: int) -> void:
+	# level_start логируем здесь — единый чокпойнт загрузки уровня (и из меню,
+	# и авто-переход на следующий). Раньше был только в menu.gd → авто-переходы
+	# не считались (level_start < level_complete).
+	PycoLog.log_event_by_type("level_start", {"level": level_num + 1})
 	MusicManager.start_music()
 	if current_level_instance:
 		current_level_instance.queue_free()
@@ -118,6 +122,11 @@ func _on_resume_button_pressed() -> void:
 func _on_restart_button_pressed() -> void:
 	SoundManager.play_button_click()
 	if current_level_instance and current_level_instance.has_method("reset_level"):
+		PycoLog.log_event_by_type("level_restart", {
+			"level": LevelManager.current_level + 1,
+			"moves": current_level_instance.move_count,
+			"time": current_level_instance.elapsed_time
+		})
 		current_level_instance.reset_level()
 	complete_panel.visible = false
 	_set_pause(false)
@@ -125,6 +134,13 @@ func _on_restart_button_pressed() -> void:
 func _on_menu_button_pressed() -> void:
 	SoundManager.play_button_click()
 	_set_pause(false)
+	# Бросил уровень не пройдя — точка отвала
+	if current_level_instance and not current_level_instance.is_completed:
+		PycoLog.log_event_by_type("level_quit", {
+			"level": LevelManager.current_level + 1,
+			"moves": current_level_instance.move_count,
+			"time": current_level_instance.elapsed_time
+		})
 	LevelManager.return_to_level_select = true
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
@@ -134,7 +150,17 @@ func _on_level_complete(success: bool, time: float, moves: int) -> void:
 		SoundManager.play_level_complete()
 		# Сохраняем прогресс сразу
 		LevelManager.save_level_progress(time, moves)
-		
+
+		var hints_used := 0
+		if current_level_instance:
+			hints_used = current_level_instance.max_hints - current_level_instance.hints_remaining
+		PycoLog.log_event_by_type("level_complete", {
+			"level": LevelManager.current_level + 1,
+			"time": time,
+			"moves": moves,
+			"hints_used": hints_used
+		})
+
 		complete_panel.visible = true
 		complete_time.text = "ВРЕМЯ: %.1f сек" % time
 		complete_moves.text = "ХОДЫ: %d" % moves

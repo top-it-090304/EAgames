@@ -194,6 +194,7 @@ func show_hint() -> void:
 		return
 	hints_remaining -= 1
 	hints_updated.emit(hints_remaining)  # Сообщаем игре, что подсказка использована
+	PycoLog.log_event_by_type("hint_used", {"level": LevelManager.current_level + 1, "hints_remaining": hints_remaining})
 	# Находим трубы с разорванными соединениями
 	var problem_pipes: Array[Pipe] = []
 	

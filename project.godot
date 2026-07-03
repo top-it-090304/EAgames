@@ -28,6 +28,8 @@ buses/default_bus_layout="uid://cwnreswan10yi"
 LevelManager="*res://scripts/level_manager.gd"
 MusicManager="*uid://dcek73mao5sig"
 SoundManager="*uid://buyykxfel20e1"
+PycoLog="*res://addons/pycolytics/pyco_log.gd"
+AppFocus="*res://scripts/app_focus.gd"
 
 [display]
 
